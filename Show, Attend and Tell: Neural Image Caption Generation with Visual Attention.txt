@@ -5,6 +5,7 @@ Strengths:
 Previous works take last layer of convnets for image representations to get maximum information out of noise from image. However, potential loss of richer feature descriptions. They have used low level features while learning to steer the model to extract relevant information
 Attention of both 'hard' and 'soft' forms was used to help the model generate the image description. Soft attention trained by standard backpropagation techniques, Hard attention stochastically trained using REINFORCE
 Interpretable results - Learned alignments meet human intuition well qualitatively
+No object detection is involved; Alignments are learned to pick up even abstract concepts from scratch
 
 Weaknesses:
 
