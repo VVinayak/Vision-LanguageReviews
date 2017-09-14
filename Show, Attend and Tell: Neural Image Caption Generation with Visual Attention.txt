@@ -2,12 +2,11 @@ Summary:
 Seek to improve image captioning by combining Neural Network Encoder-Decoder modules with Attention Frameworks. Model learns to fix gaze on right objects while describing them using attention. Tested on Flickr8K, Flickr30K, MSCOCO to achieve state-of-art performance on BLEU and METEOR metrics
 
 Strengths:
-Previous works take last layer of convnets for image representations to get maximum information out of noise from image. However, potential loss of richer feature descriptions. They have used low level features while learning to steer the model to extract relevant information. Take low level convolutional layer to get 'L' number of D-dimensional feature vectors. Taking a subset of feature vectors allows decoders to find relevant regions of the image. 
+Previous works take last layers of convnets for image representations to get maximum information out of noise from image. However, there is potential loss of richer feature descriptions due to this. The paper has used low level features while learning to steer the model to extract relevant information. Take low level convolutional layer to get 'L' number of D-dimensional feature vectors. Taking a subset of feature vectors allows decoders to find relevant regions of the image. 
 Attention of both 'hard' and 'soft' forms was used to help the model generate the image description. Soft attention trained by standard backpropagation techniques, Hard attention stochastically trained using REINFORCE
 Interpretable results - Learned alignments meet human intuition well qualitatively. In the case of mistakes, we can see what is happening exactly
 No object detection is involved; Alignments are learned to pick up even abstract concepts from scratch, even non-object salient regions. Alignments aren't a latent variable - they are actively computed using an alignment feedforward network depending on the previous hidden state and the current input word's annotation vector (calculates how relevant these 2 parameters are). The training of this network is done along with that of the entire network so that gradient of cost function backpropagates to train both the alignment and whole model jointly. The annotation vector is calculated as forward states of the CNN extractor (as compared to Bidirectional RNN for Bahdanau et al)
 Use a deep output layer (Pascanu et al 2014) instead of direct softmax (Vinyals et al. (2014)) for output word probability calculation
-New objective function which is a variational lower bound of log likelihood
 Moving average baseline and entropy terms help to reduce variance of estimator of parameters
 Encourage the model to pay equal attention to every part of the image over the course of generation using doubly stochastic attention (taking all outputs for every region, try to keep weights of annotation nearly equal to 1) - this helps improve BLEU score, get richer descriptions
 Gating scalar (computed from hidden layer) inclusion in context vector computation helps improve attention on objects in image
@@ -17,6 +16,7 @@ State of art performance achieved without using ensembling indicates robustness
 
 Weaknesses:
 Similar to Bahdanau et al.(2014) for soft attention. Chooses to change how the context vector and how the attention/alignment model function are computed for hard attention
+New objective function which is a variational lower bound of log likelihood - Why?
 Uncertain about the error in equation 11/12
 Different learning rate algorithms for different datasets - model has not been made generalizable
 No explanation of why they took the 4th layer for image features
@@ -24,5 +24,69 @@ Problem of relying on BLEU metric - had to stop training early to prevent overfi
 
 Reflections:
 Hard attention seems to get a good sentence but this is not evident from the visualizations. Soft attention seems to reaching the right things but getting confused with the sentence for the image description and giving many faulty results
+Bahdanau et al (2014) clearly mention the bottleneck of fixing the feature vector size extracted from sentences. The paper does go ahead with fixing the number and dimension of the feature vectors. If this was not restricted, could we have got better descriptions on images with varying number of salient region?
 
 Most Interesting Thoughts:
+i) Bahdanau et al (2014) clearly mention the bottleneck of fixing the feature vector size extracted from sentences. This paper does go ahead with fixing the number and dimension of the feature vectors. If this was not restricted, could we have got better descriptions on images with varying number of salient regions?
+
+ii) How do we rectify the faults in the image descriptions even though we may see that the model is not looking in the image regions we want while testing/training?
+
+iii) Can dependency parsing from training descriptions be used for improving image captioning under attention in both images and sentences?
+
+iv) Can we train a model to look at a movie and use attention to create a trailer? What about looking at a book/news article and creating a micro-movie of 1-2 minutes using attention?
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+Summary: The paper seeks to improve image captioning by using Neural Network Encoder-Decoder modules (previously successful for machine translation and image captioning tasks) and by being the first to introduce Attention Frameworks to the task of image captioning. On the encoder side, they take out features from lower layers of a CNN to get image region vectors, and on the decoder side, combine an LSTM with a context vector whose state varies based on the weights of the attention vectors to produce different probabilities of output words. The Model learns to fix its gaze on objects within an image while describing them using attention, which helps improve the descriptions. The model is tested on Flickr8K, Flickr30K, MSCOCO datasets to achieve state-of-art performance on BLEU and METEOR metrics.
+
+Strengths:
+i) Previous works take last layers of convnets for image representations to get maximum information out of noise from image. However, there is potential loss of richer feature descriptions due to this. The paper has used low level features to help in segmentation of the image into important salient regions while learning to steer the model to extract relevant information.
+
+ii) New concepts of hard and soft attention were introduced to the image captioning community
+
+iii) The ability of attention vectors to focus on salient domains helped in interpretability of final results and understand what the model was looking at when making the description, especially when the description had mistakes
+
+iv) No object detection is involved; Alignments are learned to pick up even abstract concepts from scratch, even non-object salient regions (something lacking even in other image captioning papers that used object detection to improve their results). This is smartly done by directly computing alignment vectors instead of leaving it as a latent variable.
+
+v) The paper encourages the model to pay equal attention to every part of the image over the course of generation using doubly stochastic attention - this helps improve BLEU score, get richer descriptions
+
+vi) Gating scalar inclusion in context vector computation helps improve attention on objects in the image
+
+vii) Efficient training (by passing captions based on sentence size instead of random sampling) helps improve computational convergence time. 
+
+viii) Fairness maintained in reporting results despite the variance in evaluation codes, difference in data splits, types of datasets used, ensembling etc is appreciated. The effort to cross check the above parameters on other papers is also commendable
+
+ix) State of art performance achieved without using ensembling indicates robustness. This is owed to the regularization techniques and low level feature extraction applied for the task.
+
+Weaknesses:
+i) A New objective function was used which is a variational lower bound of log likelihood, but the explanation for its usage was not explained.
+
+ii) The paper inspires heavily from Bahdanau et al (2014) in terms of its application of soft attention. The major difference is the choice of the context vector computation and alignment model function which give the extension of hard attention, but whose computation is similar to the REINFORCE algorithm (Williams, 1992).
+
+iii) Different learning rate algorithms were used for training different datasets - model has not been made generalizable to different datasets
+
+iv) There is no intuition for why they chose the 4th convolutional layer for choosing image features
+
+v) The usage of BLEU as a baseline makes the claims of state-of-art performance feeble due to the criticism of the metric. The need to test their model on more metrics and more datasets is felt. The training is said to have been stopped midway due to lack of correlation between validation set log-likelihood and BLEU scores on the premise of overfitting, which seems questionable due to the inappropriateness of the metric.
+
+Reflections:
+i) Hard attention seems to get a good sentence description during testing but this is not evident from the visualizations of where the model was gazing at each step. Soft attention seems to be reaching the right things but getting confused and giving many faulty results. Are the functioning of Neural Networks still tough to understand? Or is it overfitting in some specific examples in the paper? 
+
+ii) The paper is definitely the start for the importance of attention in the vision and language community. Many important works have improved on their work by using newer forms of attention in a variety of ways to tasks such as visual dialog and visual question answering.
+
+iii) The way forward is to improve how attention is used and answer why models do what they do and how they can be rectified. Applying attention to other forms of data such as video is also promising.
+
+iv) Getting better and larger datasets and improved evaluation measures are of great need to the vision and language community. Better models that improve the state of the art performance are also desirable.
+
+Most interesting thoughts:
+i) Bahdanau et al (2014) clearly mention the bottleneck of fixing the feature vector size extracted from sentences. This paper does go ahead with fixing the number and dimension of the feature vectors. If this was not restricted, could we have got better descriptions on images with varying number of salient regions?
+
+ii) How do we rectify the faults in the image descriptions even though we may see that the model is not looking in the image regions we want while testing/training?
+
+iii) Can dependency parsing from training descriptions be used for improving image captioning under attention in both images and sentences?
+
+iv) Can we train a model to look at a movie and use attention to create a trailer? What about looking at a book/news article and creating a micro-movie of 1-2 minutes using attention?
+
+v) Can we understand context from an image and use attention to tell stories, find important clues or even make funny captions?
