@@ -4,11 +4,11 @@ Seek to improve image captioning by combining Neural Network Encoder-Decoder mod
 Strengths:
 Previous works take last layer of convnets for image representations to get maximum information out of noise from image. However, potential loss of richer feature descriptions. They have used low level features while learning to steer the model to extract relevant information. Take low level convolutional layer to get 'L' number of D-dimensional feature vectors. Taking a subset of feature vectors allows decoders to find relevant regions of the image. 
 Attention of both 'hard' and 'soft' forms was used to help the model generate the image description. Soft attention trained by standard backpropagation techniques, Hard attention stochastically trained using REINFORCE
-Interpretable results - Learned alignments meet human intuition well qualitatively
-No object detection is involved; Alignments are learned to pick up even abstract concepts from scratch. Alignments aren't a latent variable - they are actively computed using an alignment feedforward network depending on the previous hidden state and the current input word's annotation vector (calculates how relevant these 2 parameters are). The training of this network is done along with that of the entire network so that gradient of cost function backpropagates to train both the alignment and whole model jointly. The annotation vector is calculated as forward states of the CNN extractor (as compared to Bidirectional RNN for Bahdanau et al)
+Interpretable results - Learned alignments meet human intuition well qualitatively. In the case of mistakes, we can see what is happening exactly
+No object detection is involved; Alignments are learned to pick up even abstract concepts from scratch, even non-object salient regions. Alignments aren't a latent variable - they are actively computed using an alignment feedforward network depending on the previous hidden state and the current input word's annotation vector (calculates how relevant these 2 parameters are). The training of this network is done along with that of the entire network so that gradient of cost function backpropagates to train both the alignment and whole model jointly. The annotation vector is calculated as forward states of the CNN extractor (as compared to Bidirectional RNN for Bahdanau et al)
 Use a deep output layer (Pascanu et al 2014) instead of direct softmax (Vinyals et al. (2014)) for output word probability calculation
 New objective function which is a variational lower bound of log likelihood
-Moving average baseline and entropy termsto reduce variance of estimator
+Moving average baseline and entropy terms help to reduce variance of estimator of parameters
 Encourage the model to pay equal attention to every part of the image over the course of generation using doubly stochastic attention (taking all outputs for every region, try to keep weights of annotation nearly equal to 1) - this helps improve BLEU score, get richer descriptions
 Gating scalar (computed from hidden layer) inclusion in context vector computation helps improve attention on objects in image
 Efficient training (by passing captions based on sentence size instead of random sampling) helps improve convergence time
@@ -23,6 +23,6 @@ No explanation of why they took the 4th layer for image features
 Problem of relying on BLEU metric - had to stop training early to prevent overfitting (apart from using regularization)
 
 Reflections:
-
+Hard attention seems to get a good sentence but this is not evident from the visualizations. Soft attention seems to reaching the right things but getting confused with the sentence for the image description and giving many faulty results
 
 Most Interesting Thoughts:
