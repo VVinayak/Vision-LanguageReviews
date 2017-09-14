@@ -12,13 +12,15 @@ Moving average baseline and entropy termsto reduce variance of estimator
 Encourage the model to pay equal attention to every part of the image over the course of generation using doubly stochastic attention (taking all outputs for every region, try to keep weights of annotation nearly equal to 1) - this helps improve BLEU score, get richer descriptions
 Gating scalar (computed from hidden layer) inclusion in context vector computation helps improve attention on objects in image
 Efficient training (by passing captions based on sentence size instead of random sampling) helps improve convergence time
+Fairness maintained in reporting results despite the variance in evaluation codes, difference in data splits, ensembling etc is appreciated
+State of art performance achieved without using ensembling indicates robustness
 
 Weaknesses:
 Similar to Bahdanau et al.(2014) for soft attention. Chooses to change how the context vector and how the attention/alignment model function are computed for hard attention
 Uncertain about the error in equation 11/12
 Different learning rate algorithms for different datasets - model has not been made generalizable
 No explanation of why they took the 4th layer for image features
-Problem of relying on BLEU metric
+Problem of relying on BLEU metric - had to stop training early to prevent overfitting (apart from using regularization)
 
 Reflections:
 
