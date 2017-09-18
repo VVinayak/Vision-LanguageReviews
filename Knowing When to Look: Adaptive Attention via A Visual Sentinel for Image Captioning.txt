@@ -2,7 +2,9 @@ Summary:
 The paper builds a visual sentinel along with an adaptive attention model for image captioning. At each time step, the model decides whether to attend to the image (and to which regions) or the visual sentinel, in order to help it in sequential generation of words (so attending to the non-visual words is eliminated). State-of-the-art results are achieved on MS-COCO and Flickr30K datasets by a significant margin.
 
 Strengths:
-
+1. Most other models attend to the image at every time step, even when every word in the caption need not have visual signals. Language correlations in sentences make the visual signal unnecessary. Gradients from non-visual words could mislead and diminish
+the overall effectiveness of the visual signal in guiding the caption generation process.
+3. 
 
 Weaknesses:
 
