@@ -4,7 +4,8 @@ The paper builds a visual sentinel along with an adaptive attention model for im
 Strengths:
 1. Most other models attend to the image at every time step, even when every word in the caption need not have visual signals. Language correlations in sentences make the visual signal unnecessary. Gradients from non-visual words could mislead and diminish
 the overall effectiveness of the visual signal in guiding the caption generation process.
-2. 
+2. Produce an additional visual sentinel vector besides hidden vector.
+
 
 Weaknesses:
 
