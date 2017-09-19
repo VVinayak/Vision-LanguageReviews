@@ -4,13 +4,19 @@ The paper builds a visual sentinel along with an adaptive attention model for im
 Strengths:
 1. Most other models attend to the image at every time step, even when every word in the caption need not have visual signals. Language correlations in sentences make the visual signal unnecessary. Gradients from non-visual words could mislead and diminish
 the overall effectiveness of the visual signal in guiding the caption generation process.
-2. First use a novel attention mechanism for extracting spatial vectors. Produce an additional visual sentinel vector besides hidden vector in the adaptive attention LSTM.
-3. 
+2. First use a novel attention mechanism for extracting spatial vectors. Produce an additional visual sentinel vector besides hidden vector in the adaptive attention LSTM. 
+3. Design a new sentinel gate, which decides how much new information the decoder wants to get from image compared to visual sentinel when generating the next word
+4. Perform an extensive analysis of the adaptive attention model, including visual grounding probabilities of words and weakly supervised localization of generated attention maps
+5. The LSTM is not using the context vector and uses the attention model takes the latest hidden state instead of the previous hidden state. The context vector is a fancier version of the hidden state to help improve the residual visual information available from the image
+6. The decoder’s memory stores both long and short term visual and linguistic information. The paper extracts a new vector from there to produce the visual sentinel - something the model can fall back on when not attending to the image. The sentinel gate decides whether to focus on the image or the sentinel.
+7. Adaptive context vector depends on the spatial attention model and the context vector in the ratio of beta to trade off what it knows from the image to what it already knows from the visual sentinel.
+8. Uses CIDEr instead of BLEU
 
 Weaknesses:
-
+1. The computation of beta depends on the value of z added. But the intuition on the choice of z and the computation of beta is not very clear
 
 Reflections:
-
+1. What is the importance of the global image vector? How does it help to concatenate it with the learnt word weights?
+2. If the low level features from a lower layer had been chosen instead of the last layer, would it be possible to get higher accuracies?
 
 Most interesting thought:
