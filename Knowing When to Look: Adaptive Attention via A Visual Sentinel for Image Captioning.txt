@@ -11,16 +11,62 @@ the overall effectiveness of the visual signal in guiding the caption generation
 6. The decoder’s memory stores both long and short term visual and linguistic information. The paper extracts a new vector from there to produce the visual sentinel - something the model can fall back on when not attending to the image. The sentinel gate decides whether to focus on the image or the sentinel.
 7. Adaptive context vector depends on the spatial attention model and the context vector in the ratio of beta to trade off what it knows from the image to what it already knows from the visual sentinel.
 8. Uses better metrics such as SPICE, METEOR, CIDEr etc. instead of just BLEU. The evaluation involves appropriate amount of comparison to baselines and checks on orthogonal improvements that might normally bias results.
-9. Qualitatively, the results are very good - only texture and fine-grained categories are amiss. The model seems to ignore the image successfully when producing non-visual words 
+9. Qualitatively, the results are very good - only texture and fine-grained categories are amiss. The model seems to ignore the image successfully when producing non-visual words and is able to take into account context of the non-visual words being used while differentially allocating visual grounding probabilities.
+10. Usage of weakly supervised localization is novel in this paper, and not done previously to test attention models' results.
 
 Weaknesses:
 1. The computation of beta depends on the value of z added. But the intuition on the choice of z and the computation of beta is not very clear
 2. State of the art is achieved but by small margins and non-uniformly as CIDEr is being used for stopping 
+3. Different visual grounding probabilities for words which are grammatically similar. Different probabilities for different datasets is also confusing.
+4. Smaller objects aren't as well recognized spatially because of the small feature map extracted.
 
 Reflections:
 1. What is the importance of the global image vector? How does it help to concatenate it with the learnt word weights?
 2. If the low level features from a lower layer had been chosen instead of the last layer, would it be possible to get higher accuracies?
 3. Is the beam size small for measuring diversity?
 4. Long captions are still not understandable to the model even though we choose to attend to the caption only sometimes
+5. The LSTM is not using the context vector and uses the attention model takes the latest hidden state instead of the previous hidden state. The context vector is a fancier version of the hidden state to help improve the residual visual information available from the image. This seems to be similar to what review networks are doing in Yang et al. (2016)
 
 Most interesting thought:
+Knowing where to attend seems to depend on knowing when to attend about 1 in 3 times. Can this be improved by taking lower level features from a lower layer? How can longer captions be also understood by the model? Can review networks from Yang et al. (2016) improve the where to attend aspect?
+
+Summary:
+The paper builds a visual sentinel along with an adaptive attention model for image captioning. At each time step, the model decides whether to attend to the image (and to which regions) or the visual sentinel, in order to help it in sequential generation of words (so attending to the non-visual words is eliminated). State-of-the-art results are achieved on MS-COCO and Flickr30K datasets by a significant margin.
+
+Strengths:
+1. Most other models attend to the image at every time step, even when every word in the caption need not have visual signals. Language correlations in sentences make the visual signal unnecessary. Gradients from non-visual words could mislead and diminish the overall effectiveness of the visual signal in guiding the caption generation process.
+
+2. First use a novel attention mechanism for extracting spatial vectors. Produce an additional visual sentinel vector besides hidden vector in the adaptive attention LSTM. 
+
+3. Design a new sentinel gate, which decides how much new information the decoder wants to get from image compared to visual sentinel when generating the next word
+
+4. Perform an extensive analysis of the adaptive attention model, including visual grounding probabilities of words and weakly supervised localization of generated attention maps
+
+5. The decoder’s memory stores both long and short term visual and linguistic information. The paper extracts a new vector from there to produce the visual sentinel - something the model can fall back on when not attending to the image. The sentinel gate decides whether to focus on the image or the sentinel.
+
+6. Uses better metrics such as SPICE, METEOR, CIDEr etc. instead of just BLEU. The evaluation involves appropriate amount of comparison to baselines and checks on orthogonal improvements that might normally bias results.
+
+7.Qualitatively, the results are very good - only texture and fine-grained categories are amiss. The model seems to ignore the image successfully when producing non-visual words and is able to take into account context of the non-visual words being used while differentially allocating visual grounding probabilities.
+
+8. Usage of weakly supervised localization is novel in this paper, and not done previously to test attention models' results.
+
+Weaknesses:
+1. The computation of beta depends on the value of z added. But the intuition on the choice of z and the computation of beta is not very clear
+
+2. State of the art is achieved but by small margins and non-uniformly as CIDEr is being used for stopping 
+
+3. Different visual grounding probabilities for words which are grammatically similar. Different probabilities for different datasets is also confusing.
+
+4. Smaller objects aren't as well recognized spatially because of the small feature map extracted.
+
+Reflections:
+1. What is the importance of the global image vector? How does it help to concatenate it with the learnt word weights?
+
+2. If the low level features from a lower layer had been chosen instead of the last layer, would it be possible to get higher accuracies?
+
+3. Is the beam size small for measuring diversity?
+
+4. Long captions are still not understandable to the model even though we 
+choose to attend to the caption only sometimes
+
+5. The LSTM is not using the context vector and uses the attention model takes the latest hidden state instead of the previous hidden state. The context vector is a fancier version of the hidden state to help improve the residual visual information available from the image. This seems to be similar to what review networks are doing in Yang et al. (2016)
