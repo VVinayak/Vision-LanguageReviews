@@ -1,0 +1,13 @@
+Summary:
+The paper develops inference techniques that describe images in a discriminative context-aware way despite being trained on context-agnostic training data, where the model is able to accurately describe a target image differentially from a distractor image. A joint inference is learnt from a language model that is context-agnostic and a listener which distinguishes closely-related concepts. The paper tests the technique on a justification task that aims to explain why an image belongs to a particular class as compared to another relevant class from the CUB-200-2011 dataset. The other task of discriminative image captioning to uniquely describe a target image as compared to a distractor image from the COCO dataset. Evaluations of results shows state-of-art performance on generative and listener-speaker approaches for discrimination.
+
+Strengths:
+1. Able to develop pragmatic reasoning skills despite being trained in a context-agnostic way
+
+Weaknesses:
+
+
+Reflections:
+
+
+Most interesting Thought:
