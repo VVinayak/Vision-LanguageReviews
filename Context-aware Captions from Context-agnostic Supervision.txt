@@ -8,16 +8,24 @@ Strengths:
 
 3. The paper creates a new dataset specifically for justification tasks (CUB-Justify)
 
-4. Andreas and Klein (2016) use 2 separate models for each task and also train on the abstract scenes dataset, whereas the paper trains on real world images from CUB-200-2011 and COCO.
+4. Andreas and Klein (2016) use 2 separate models for each task and also train on the abstract scenes dataset, whereas this paper trains on real world images from CUB-200-2011 and COCO.
 
 5. The paper performs beam search on a modified objective for the introspective speaker model to induce discrimination
 
-6.
+6. Conditioning the model on the image and the target concept helps improve the discriminative nature of the generator. The generator utters a sentence which is discriminately scored by a listener, which checks the sentence against the target and distractor concepts. The reasoning speaker tries to choose the best sentences while taking into account the listener's scores. 
+
+7. The listener does not have to be trained separately - it is trained on an existing language model used by the speaker.  
+
+8. The speaker-listener model helps in better discrimination of highly similar concepts and makes it more unified and efficient in terms of inference, due to the log-likelihood approximation.
 
 Weaknesses:
+1. The listener module is dependent on the generator module to decide its discriminative power. Though this alleviates problems with training another module, the listener is not independently discriminative
 
+2. 
 
 Reflections:
+1. Only concepts from the target and distractor are passed to the model, not the distractor image. 
 
+2. Without the discriminator concepts, captioning can not improve. But it is usually tough to find distractor and target concepts in real-world applications.
 
 Most interesting Thought:
