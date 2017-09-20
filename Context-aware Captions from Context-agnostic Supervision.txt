@@ -4,9 +4,15 @@ The paper develops inference techniques that describe images in a discriminative
 Strengths:
 1. Introspective listener able to develop pragmatic reasoning skills despite being trained in a context-agnostic way
 
-2. Unified inference of language model and listener helps in efficient search for discriminative sentences. Reusing the sampled distribution from the generative model for the listener model's discriminativeness training is useful. This allows the extension of context-agnostic models to context-aware models without additional training. Andreas and Klein (2016) use 2 separate models for each task and also train on the abstract scenes dataset, whereas the paper trains on real world images from CUB-200-2011 and COCO.
+2. Unified inference of language model and listener helps in efficient search for discriminative sentences. Reusing the sampled distribution from the generative model for the listener model's discriminativeness training is useful. This allows the extension of context-agnostic models to context-aware models without additional training. 
 
 3. The paper creates a new dataset specifically for justification tasks (CUB-Justify)
+
+4. Andreas and Klein (2016) use 2 separate models for each task and also train on the abstract scenes dataset, whereas the paper trains on real world images from CUB-200-2011 and COCO.
+
+5. The paper performs beam search on a modified objective for the introspective speaker model to induce discrimination
+
+6.
 
 Weaknesses:
 
