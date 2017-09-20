@@ -18,7 +18,7 @@ Strengths:
 
 8. The speaker-listener model helps in better discrimination of highly similar concepts and makes it more unified and efficient in terms of inference, due to the log-likelihood approximation of the emitter (conditioned on the target concept) and the suppressor (conditioned on the distractor concept). Thus the paper emits words similar to the target but rejects tokens similar to the distractor.
 
-9. 
+9. The usage of CIDEr-D helps evaluate the justification tasks, by concentrating on content rather than generic n-grams.  
 
 Weaknesses:
 1. The listener module is dependent on the generator module to decide its discriminative power. Though this alleviates problems with training another module, the listener is not independently discriminative
