@@ -6,11 +6,11 @@ Strengths:
 
 2. Unified inference of language model and listener helps in efficient search for discriminative sentences. Reusing the sampled distribution from the generative model for the listener model's discriminativeness training is useful. This allows the extension of context-agnostic models to context-aware models without additional training. 
 
-3. The paper creates a new dataset specifically for justification tasks (CUB-Justify)
+3. The paper creates a new dataset specifically for justification tasks (CUB-Justify) by searching for hyper-categories in bird names, creating test-train splits such that sub-categories of a hypercategory could act as distractor images of each other.
 
 4. Andreas and Klein (2016) use 2 separate models for each task and also train on the abstract scenes dataset, whereas this paper trains on real world images from CUB-200-2011 and COCO.
 
-5. The paper performs beam search on a modified objective for the introspective speaker model to induce discrimination
+5. The paper performs beam search on a modified objective for the introspective speaker model to induce discrimination. Instead of maximising the speaker's log probability alone, the log probability of the emitter-
 
 6. Conditioning the model on the image and the target concept helps improve the discriminative nature of the generator. The generator utters a sentence which is discriminately scored by a listener, which checks the sentence against the target and distractor concepts. The reasoning speaker tries to choose the best sentences while taking into account the listener's scores. 
 
