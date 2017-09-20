@@ -2,7 +2,11 @@ Summary:
 The paper develops inference techniques that describe images in a discriminative context-aware way despite being trained on context-agnostic training data, where the model is able to accurately describe a target image differentially from a distractor image. A joint inference is learnt from a language model that is context-agnostic and a listener which distinguishes closely-related concepts. The paper tests the technique on a justification task that aims to explain why an image belongs to a particular class as compared to another relevant class from the CUB-200-2011 dataset. The other task of discriminative image captioning to uniquely describe a target image as compared to a distractor image from the COCO dataset. Evaluations of results shows state-of-art performance on generative and listener-speaker approaches for discrimination.
 
 Strengths:
-1. Able to develop pragmatic reasoning skills despite being trained in a context-agnostic way
+1. Introspective listener able to develop pragmatic reasoning skills despite being trained in a context-agnostic way
+
+2. Unified inference of language model and listener helps in efficient search for discriminative sentences. Reusing the sampled distribution from the generative model for the listener model's discriminativeness training is useful. This allows the extension of context-agnostic models to context-aware models without additional training. Andreas and Klein (2016) use 2 separate models for each task and also train on the abstract scenes dataset, whereas the paper trains on real world images from CUB-200-2011 and COCO.
+
+3. The paper creates a new dataset specifically for justification tasks (CUB-Justify)
 
 Weaknesses:
 
