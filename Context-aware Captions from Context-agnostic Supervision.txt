@@ -4,7 +4,8 @@ The paper develops inference techniques that describe images in a discriminative
 Strengths:
 1. Introspective listener able to develop pragmatic reasoning skills despite being trained in a context-agnostic way
 
-2. Unified inference of language model and listener helps in efficient search for discriminative sentences. Reusing the sampled distribution from the generative model for the listener model's discriminativeness training is useful. This allows the extension of context-agnostic models to context-aware models without additional training. 
+2. Unified inference of language model and listener helps in efficient search for discriminative sentences. Reusing the sampled distribution from the generative model for the listener model's discriminativeness training is useful. This allows the extension of context-agnostic models to context-aware models without additional training. The approach is more computationally efficient at exploring the output space because the emitter-suppressor beam search does joint greedy inference over speaker and introspector,
+leading to more meaningful local decisions
 
 3. The paper creates a new dataset specifically for justification tasks (CUB-Justify) by searching for hyper-categories in bird names, creating test-train splits such that sub-categories of a hypercategory could act as distractor images of each other.
 
@@ -18,12 +19,28 @@ Strengths:
 
 8. The speaker-listener model helps in better discrimination of highly similar concepts and makes it more unified and efficient in terms of inference, due to the log-likelihood approximation of the emitter (conditioned on the target concept) and the suppressor (conditioned on the distractor concept). Thus the paper emits words similar to the target but rejects tokens similar to the distractor.
 
-9. The usage of CIDEr-D helps evaluate the justification tasks, by concentrating on content rather than generic n-grams.  
+9. The usage of CIDEr-D helps evaluate the justification tasks, by concentrating on content n-grams rather than generic n-grams in relation to the image.  It is also based on the better accepted CIDEr metric.
+
+10. The results achieved are better than normal image captioning tasks due to the feeding of the target concept class and distractor concept class along with the image. 
+
+11. The ideas of easy and hard confusion to create the datasets for discriminative image captioning are innovative and are carried out by comparing features from the FC7 layer of VGGnet and finding nearest neighbours.
+
+12. In discriminative tasks, grammatical constructs are maintained even while being discriminative at optimal values of lambda.
+
+13. Contextual understanding is commendable as compared to Hendricks et al. (2016). Also for lower computational cost, the paper achieves good discriminative skills which takes Andreas and Klein (2016) many more samples to achieve.
 
 Weaknesses:
 1. The listener module is dependent on the generator module to decide its discriminative power. Though this alleviates problems with training another module, the listener is not independently discriminative
 
-2. 
+2. To be discriminative, the model sometimes tends to repeat words unwantedly to be as different as possible while describing the target image.
+
+3. The model doesn't generalize to the situation when the distractor is not quite relevant to the target image. 
+
+4. Being too discriminative may cause the model to pick up rare words in unwanted combinations.  In the absence of ground truth
+justifications, there is indeed a discrepancy between searching for discriminativeness and searching for a highly likely
+context-agnostic sentence.
+
+5. The SPICE metric appears to have produced some misleading scores in corner cases because of its formulation that clashes with the model's need to be as discriminative as possible.
 
 Reflections:
 1. Only concepts from the target and distractor are passed to the model, not the distractor image. 
@@ -31,5 +48,16 @@ Reflections:
 2. Without the discriminator concepts, captioning can not improve. But it is usually tough to find distractor and target concepts in real-world applications.
 
 3. If concepts are similar, then why are we trying to eliminate words that describe the distractor? Shouldn't we aim to add extra tokens to explain the difference between the target and the distractor, instead of removing the commonalities?
+
+4. The task of discriminative image captioning can help us improve the diversity of statements produced in generic image captioning models.
+
+5. When conditioned on the image, the introspector has to be highly discriminative (low lambda values) to overcome the signals
+from the image, since discrimination is between classes.
+
+6. A good justification approach needs to be grounded in the image signal to pick the discriminative cues appropriate for the given instance
+
+7. The paper goes in great detail on how it is different from Hendricks et al (2016), but the justification solution approach does seem heavily inspired from there.
+
+8. The task of assigning captions in a discriminative way is quite taxing for AMT workers. Though this was a problem of the dataset and a goal of the paper, one could be concerned about how workers might have given inaccurate or not so discriminative captions, which could be the reason for lower accuracies on metrics.
 
 Most interesting Thought:
