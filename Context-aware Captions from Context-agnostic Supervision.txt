@@ -19,7 +19,7 @@ leading to more meaningful local decisions
 
 8. The speaker-listener model helps in better discrimination of highly similar concepts and makes it more unified and efficient in terms of inference, due to the log-likelihood approximation of the emitter (conditioned on the target concept) and the suppressor (conditioned on the distractor concept). Thus the paper emits words similar to the target but rejects tokens similar to the distractor.
 
-9. The usage of CIDEr-D helps evaluate the justification tasks, by concentrating on content n-grams rather than generic n-grams in relation to the image.  It is also based on the better accepted CIDEr metric.
+9. The usage of CIDEr-D helps evaluate the justification tasks, by concentrating on content n-grams rather than generic n-grams in relation to the image.  It is also based on the better accepted CIDEr metric. Other metrics such as METEOR and SPICE are also evaluated against.
 
 10. The results achieved are better than normal image captioning tasks due to the feeding of the target concept class and distractor concept class along with the image. 
 
@@ -43,7 +43,7 @@ context-agnostic sentence.
 5. The SPICE metric appears to have produced some misleading scores in corner cases because of its formulation that clashes with the model's need to be as discriminative as possible.
 
 Reflections:
-1. Only concepts from the target and distractor are passed to the model, not the distractor image. 
+1. Only concepts from the target and distractor are passed to the model, not the distractor image. What happens if some version of it is fed to disincentivize the model?
 
 2. Without the discriminator concepts, captioning can not improve. But it is usually tough to find distractor and target concepts in real-world applications.
 
@@ -58,7 +58,7 @@ from the image, since discrimination is between classes.
 
 7. The paper goes in great detail on how it is different from Hendricks et al (2016), but the justification solution approach does seem heavily inspired from there.
 
-8. The task of assigning captions in a discriminative way is quite taxing for AMT workers. Though this was a problem of the dataset and a goal of the paper, one could be concerned about how workers might have given inaccurate or not so discriminative captions, which could be the reason for lower accuracies on metrics.
+8. The task of assigning captions in a discriminative way is quite taxing for AMT workers. Though this was a feature of the dataset and a goal of the paper, one could be concerned about how workers might have given inaccurate or not so discriminative captions, which could be the reason for lower accuracies on metrics.
 
 Most interesting Thought:
 The task of discriminative image captioning can help us improve the diversity of statements produced in generic image captioning models. It would be interesting to apply a knowledge graph as the source of discrimination instead of producing target and distractor images/concepts to improve captioning (since most datasets and applications don't have such distractor data available). And in vice versa fashion, Learning to reason with Neural Module Networks (Andreas et al (2016)) could be improved in reasoning abilities by providing distractor images and applying the log likelihood ratio to help reason the right concepts. Both distractor image based and knowledge based approaches to image captioning can benefit from each other.
