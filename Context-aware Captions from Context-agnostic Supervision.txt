@@ -9,9 +9,9 @@ leading to more meaningful local decisions
 
 3. The paper creates a new dataset specifically for justification tasks (CUB-Justify) by searching for hyper-categories in bird names, creating test-train splits such that sub-categories of a hypercategory could act as distractor images of each other.
 
-4. Andreas and Klein (2016) use 2 separate models for each task and also train on the abstract scenes dataset, whereas this paper trains on real world images from CUB-200-2011 and COCO.
+4. Andreas and Klein (2016) use 2 separate models for each task and also train on the abstract scenes dataset, whereas this paper trains on real world images from CUB-200-2011 and COCO. Joint inference is proved to be more efficient in this paper.
 
-5. The paper performs beam search on a modified objective for the introspective speaker model to induce discrimination. Instead of maximising the speaker's log probability alone, the log probability of the emitter-
+5. The paper performs beam search on a modified objective for the introspective speaker model to induce discrimination. Instead of maximising the speaker's log probability alone, the log probability of the emitter-suppressor is considered.
 
 6. Conditioning the model on the image and the target concept helps improve the discriminative nature of the generator. The generator utters a sentence which is discriminately scored by a listener, which checks the sentence against the target and distractor concepts. The reasoning speaker tries to choose the best sentences while taking into account the listener's scores. 
 
@@ -27,7 +27,7 @@ leading to more meaningful local decisions
 
 12. In discriminative tasks, grammatical constructs are maintained even while being discriminative at optimal values of lambda.
 
-13. Contextual understanding is commendable as compared to Hendricks et al. (2016). Also for lower computational cost, the paper achieves good discriminative skills which takes Andreas and Klein (2016) many more samples to achieve.
+13. Contextual understanding is commendable as compared to Hendricks et al. (2016). Also for lower computational cost, the paper achieves good discriminative skills which takes Andreas and Klein (2016) many more samples to achieve. 
 
 Weaknesses:
 1. The listener module is dependent on the generator module to decide its discriminative power. Though this alleviates problems with training another module, the listener is not independently discriminative
@@ -61,3 +61,4 @@ from the image, since discrimination is between classes.
 8. The task of assigning captions in a discriminative way is quite taxing for AMT workers. Though this was a problem of the dataset and a goal of the paper, one could be concerned about how workers might have given inaccurate or not so discriminative captions, which could be the reason for lower accuracies on metrics.
 
 Most interesting Thought:
+The task of discriminative image captioning can help us improve the diversity of statements produced in generic image captioning models. It would be interesting to apply a knowledge graph as the source of discrimination instead of producing target and distractor images/concepts to improve captioning (since most datasets and applications don't have such distractor data available). And in vice versa fashion, Learning to reason with Neural Module Networks (Andreas et al (2016)) could be improved in reasoning abilities by providing distractor images and applying the log likelihood ratio to help reason the right concepts. Both distractor image based and knowledge based approaches to image captioning can benefit from each other.
