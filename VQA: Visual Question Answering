@@ -1,0 +1,15 @@
+Summary:
+The paper introduces the next challenging AI-task of  Visual Question Answering, where given an image and a free-form and open-ended natural language question based on the image, a model tries to answer the question in natural language. The paper argues that understanding background contexts is very challenging and hence makes the task more challenging than generic image captioning. It also mentions how evaluation of models is much easier than compared to captioning, as the possible answers to an open-ended free form question are of a few words or can be easily enumerated. The paper contributes one of the first datasets for VQA containing ∼0.25M images, ∼0.76M questions, and ∼10M answers, and explains the nuances of the dataset. 
+
+Strengths:
+
+
+Weaknesses:
+
+
+Reflections:
+
+
+Most Interesting thought:
+
+
