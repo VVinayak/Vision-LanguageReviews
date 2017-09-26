@@ -2,14 +2,31 @@ Summary:
 The paper introduces the next challenging AI-task of  Visual Question Answering, where given an image and a free-form and open-ended natural language question based on the image, a model tries to answer the question in natural language. The paper argues that understanding background contexts is very challenging and hence makes the task more challenging than generic image captioning. It also mentions how evaluation of models is much easier than compared to captioning, as the possible answers to an open-ended free form question are of a few words or can be easily enumerated. The paper contributes one of the first datasets for VQA containing ∼0.25M images, ∼0.76M questions, and ∼10M answers, and explains the nuances of the dataset. 
 
 Strengths:
+1. The paper successfully conveys the importance and challenging nature of VQA - fine-grained recognition, object detection, knowledge base reasoning, activity recognition, commonsense reasoning are not fully extracted in captioning tasks. The ease of valuation also makes VQA a much more trustworthy method for evaluating AI responses.
 
+2. The paper introduces a realistic abstract scene dataset to enable research focused only on the high-level reasoning (not low-level noisy visual tasks) required for VQA by removing the need to parse real images.
+
+3. The paper broadens the spectrum of questions and answers to being open-ended and free-form to increase the diversity of knowledge and kinds of reasoning needed to provide correct answers.
+
+4. The dataset size is quite large and comprehensive in terms of diversity.
+
+5. The paper explores late fusion where the LSTM question representation and the CNN image features are computed independently, fused via an element-wise multiplication, and then passed through fully connected layers to generate a softmax distribution over output answer classes.
+
+6. VQA is grounded in both images and text, hence models can't bypass the use of commonsense and complex reasoning.
+
+7. The quality of questions is well maintained due to the simple yet interesting constraints set by the authors.
+
+8. The details involved while collecting answers is appreciated, where people must answer questions with and without the image, and must confirm to what degree of satisfaction they were able to answer questions. This helps models understand the visual grounding required.
+
+9. The addition of confusing plausible and popular answers truly tests models' question inference abilities.
 
 Weaknesses:
+1. The ideas of language priors and compositionality were still not very clear at the time of the dataset creation which has led to many models learning to vomit answers without seeing the images carefully. The number of questions requiring binary answers is quite high and might prejudice several models. 
 
 
 Reflections:
 
 
 Most Interesting thought:
-
+It would be interesting to learn a joint embedding of VQA images and questions (and giving answers in the place of captions), and pass this embedding to generic image captioning models to possibly help them better caption normal images, as they could use their access to questions to know what they must describe to get a better approval from humans. By knowing what humans want to be understood in images, models can improve their captions and accuracies.
 
