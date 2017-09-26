@@ -16,17 +16,28 @@ Strengths:
 
 7. The quality of questions is well maintained due to the simple yet interesting constraints set by the authors.
 
-8. The details involved while collecting answers is appreciated, where people must answer questions with and without the image, and must confirm to what degree of satisfaction they were able to answer questions. This helps models understand the visual grounding required.
+8. The details involved while collecting answers is appreciated, where people must answer questions with and without the image, and must confirm to what degree of satisfaction they were able to answer questions. This helps models understand the visual grounding required. The test on how well models picked up visual ques from just captions also successfully portrayed the need for visual grounding.
 
-9. The addition of confusing plausible and popular answers truly tests models' question inference abilities.
+9. The addition of confusing plausible and popular answers truly tests models' question inference abilities. The survey of requirement of commonsense to test the questions produced is also appreciated.
+
+10. A good number of baselines and versions of methods are used to solve the VQA task.
 
 Weaknesses:
-1. The ideas of language priors and compositionality were still not very clear at the time of the dataset creation which has led to many models learning to vomit answers without seeing the images carefully. The number of questions requiring binary answers is quite high and might prejudice several models. 
+1. The ideas of language priors and compositionality were still not very clear at the time of the dataset creation which has led to many models learning to vomit answers without seeing the images carefully. The number of questions requiring binary answers is quite high and might prejudice several models due to the learnt statistical quantities. 
 
+2. Questions requiring more reasoning seem to elicit poor accuracy in answers despite being provided image features.
+
+3. Concepts of age and commonsense are perceived differently for different workers in the uncontrolled AMT nvironment and may not actually represent the dataset's complexity.
 
 Reflections:
+1. The models currently do not use attention to help them answer questions.
 
+2. The model of the paper has the commonsense of a 5 year old! That's quite impressive for a machine!
+
+3. The understanding of word distributions in captions vs questions and answers gives us very good clues on what might be lacking in terms of models and datasets.
+
+4. The ability to answer multiple choice questions better than free form questions indicates how models, like humans, get confused by ambiguity. Models prefer thinking in choices rather than free flowing thought. Are our neural network models becoming too digital in output choices rather than being analog in thought?
 
 Most Interesting thought:
-It would be interesting to learn a joint embedding of VQA images and questions (and giving answers in the place of captions), and pass this embedding to generic image captioning models to possibly help them better caption normal images, as they could use their access to questions to know what they must describe to get a better approval from humans. By knowing what humans want to be understood in images, models can improve their captions and accuracies.
+It would be interesting to learn a joint embedding of VQA images and questions (and giving answers in the place of captions), and pass this embedding to generic image captioning models to possibly help them better caption normal images, as they could use their access to questions to know what they must describe to get a better approval from humans. By knowing what humans want to be understood in images, models can improve their captions and accuracies (in essence, using VQA to improve image captioning). Training images, with questions, answers and captions might really improve the captioning task.
 
