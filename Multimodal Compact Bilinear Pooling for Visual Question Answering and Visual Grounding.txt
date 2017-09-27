@@ -7,7 +7,7 @@ Strengths:
 2. 
 
 Weaknesses:
-
+1. The justification for using a MCB  is to use the numerous interactions between different modalities through the outer product. But the justification for using the outer product isn't clear. How is the outer product capturing more information? Isn't it possible that they may be just introducing more noise and confuse the model? By multiplying random text components with random image components, it is possible that some noise is creeping in.
 
 Reflections:
 1. It would be interesting to know how MCB can compete with or complement current state of art models using joint embeddings.
