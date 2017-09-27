@@ -4,15 +4,20 @@ The paper introduces the concept of multimodal compact bilinear pooling to effic
 Strengths:
 1. For combining the two vector representations (multimodal pooling), current approaches in VQA or grounding might not be expressive enough to fully capture the complex associations between the two different modalities. Bilinear pooling computes a multiplicative interaction between all elements of both vectors and are known to be beneficial for fine-grained classification for vision only tasks. To counter the problem of dimensionality, they extend Gao et al's (2016) idea to efficiently compress bilinear pooling for a single modality. MCB is approximated by randomly projecting the image and text representations to a higher dimensional space  and then convolving both vectors efficiently by using element-wise product in Fast Fourier Transform (FFT) space
 
-2. 
+2. The model does consider attention to capture spatial information. They also experiment with multiple attention maps to get the model to take multiple glimpses of important regions in the picture.
+
+3. The evaluations are done in sufficient numbers and compared against a variety of baselines. The justification in terms of bilinear versus non-bilinear model performance despite having nearly similar parameter numbers is satisfactory.
 
 Weaknesses:
-1. The justification for using a MCB  is to use the numerous interactions between different modalities through the outer product. But the justification for using the outer product isn't clear. How is the outer product capturing more information? Isn't it possible that they may be just introducing more noise and confuse the model? By multiplying random text components with random image components, it is possible that some noise is creeping in.
+1. The justification for using a MCB  is to use the numerous interactions between different modalities through the outer product. But the justification for using the outer product over joint multimodal embeddings isn't clear. How is the outer product capturing more information? Isn't it possible that they may be just introducing more noise and confuse the model? By multiplying random text components with random image components, it is possible that some noise is creeping in.
+
+2. The testing has been done for question-answer pairs where the answers are mostly one word in length. It makes the testing incomplete and question the power of MCBP. There should have been more examples to get a qualitative evaluation of the results, including a few failures.
 
 Reflections:
 1. It would be interesting to know how MCB can compete with or complement current state of art models using joint embeddings.
 
-2.
+2. Does having more number of parameters actually help our model? Or is it just more noise?
 
+3. CountSketch vectors tend to mash up information from very high dimension vectors, which might cause loss of information. The choice of s(k) and h(k) is done randomly from a uniform distribution. Are the results a random coincidence, especially since the paper clearly mentions as s and h are maintained the same for future invocations of count sketch?
 
 Most interesting thought:
