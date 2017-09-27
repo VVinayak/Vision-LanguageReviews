@@ -10,6 +10,9 @@ Weaknesses:
 
 
 Reflections:
+1. It would be interesting to know how MCB can compete with or complement current state of art models using joint embeddings.
+
+2.
 
 
 Most interesting thought:
