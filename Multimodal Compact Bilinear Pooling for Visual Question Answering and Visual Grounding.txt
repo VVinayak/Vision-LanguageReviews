@@ -1,2 +1,15 @@
 Summary:
 The paper introduces the concept of multimodal compact bilinear pooling to efficiently and expressively combine multimodal features from visual and textual representations for the tasks of visual question answering and visual grounding. They show that MCBP performs better than other techniques used in previous literature for combining both modalities, while being more efficient than an outer product of these two. They achieve state-of-the-art performance for visual question answering on the Visual7W and VQA datasets by using MCB twice - once for predicting attention over spatial features and again to combine the attended representation with the question representation. For the task of visual grounding, MCBP leads to improved phrase localization accuracy, indicating better interaction between query phrase representations and visual representations of proposal bounding boxes.
+
+Strengths:
+1. For combining the two vector representations (multimodal pooling), current approaches in VQA or grounding might not be expressive enough to fully capture the complex associations between the two different modalities. Bilinear pooling computes a multiplicative interaction between all elements of both vectors and are known to be beneficial for fine-grained classification for vision only tasks. To counter the problem of dimensionality, they extend Gao et al's (2016) idea to efficiently compress bilinear pooling for a single modality. MCB is approximated by randomly projecting the image and text representations to a higher dimensional space  and then convolving both vectors efficiently by using element-wise product in Fast Fourier Transform (FFT) space
+
+2. 
+
+Weaknesses:
+
+
+Reflections:
+
+
+Most interesting thought:
