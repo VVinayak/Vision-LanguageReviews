@@ -11,7 +11,9 @@ Strengths:
 Weaknesses:
 1. The justification for using a MCB  is to use the numerous interactions between different modalities through the outer product. But the justification for using the outer product over joint multimodal embeddings isn't clear. How is the outer product capturing more information? Isn't it possible that they may be just introducing more noise and confuse the model? By multiplying random text components with random image components, it is possible that some noise is creeping in.
 
-2. The testing has been done for question-answer pairs where the answers are mostly one word in length. It makes the testing incomplete and question the power of MCBP. There should have been more examples to get a qualitative evaluation of the results, including a few failures.
+2. The testing has been done for question-answer pairs where the answers are mostly one word in length, and so can afford to have 3000 classes. It makes the testing incomplete and question the power of MCBP. 
+
+3.There should have been more examples to get a qualitative evaluation of the results, including a few failures.
 
 Reflections:
 1. It would be interesting to know how MCB can compete with or complement current state of art models using joint embeddings.
@@ -20,4 +22,9 @@ Reflections:
 
 3. CountSketch vectors tend to mash up information from very high dimension vectors, which might cause loss of information. The choice of s(k) and h(k) is done randomly from a uniform distribution. Are the results a random coincidence, especially since the paper clearly mentions as s and h are maintained the same for future invocations of count sketch?
 
+4. The authors augment their training data using the Visual Genome and Visual7W datasets. Is it right to compare the performance of models if trained on different amounts of training data?
+
+5. The reason for using MCBP is that it captures more features and does so in an efficient way by a specialized mapping-summation. It would have been good to know some comparisons on computation time/space complexity between previous element wise techniques and MCBP with FFT computations.
+
 Most interesting thought:
+It would be interesting to see how MCBP could work on generic image captioning tasks, when given the image and caption in late fusion. It would also be interesting to extend the capabilities of the above model to be able to give open ended answers instead of having to pick from binned options. We could use a similar approach as in captioning/visual grounding, which would pass (through an LSTM) the image region vectors weighted by the distribution of answers relevant to that region based on intersection of union over bounding boxes. Work by Lin and Parikh (2016) could also help in extending this idea.
