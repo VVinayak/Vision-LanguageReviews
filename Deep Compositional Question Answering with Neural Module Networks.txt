@@ -17,12 +17,14 @@ Strengths:
 - The paper takes care of the situation where some weights are updated much more frequently than others while training the joint model.
 
 Weaknesses:
-- The modules seem hand-coded and limited. It is also not apparent what intuition is being used in devising a module's structure. The potential position of a module seems to be fixed beforehand, hence preventing any flexibility in analysis of the question structure.
+- The modules seem hand-coded and limited. It is also not apparent what intuition is being used in devising a module's structure. The potential position of a module seems to be fixed beforehand, hence preventing any flexibility in design of the question structure.
 
 Reflections:
-- The paper has found a newer technique to use attention (through compositional attention blocks), which is more hand coded insted of leaving it to a monolithic network.
+- The paper has found a newer technique to use attention (through compositional attention blocks), which is more hand coded instead of leaving it to a monolithic network. AI is still too young to be left alone without human supervision.
 
-- 
+- The paper trains modules jointly and helps create their specific role because of training over specific image-answer pairs and NMN parameters. This modular extraction can be used to improve image captioning models through such module-based attention. 
+
+- The paper clearly highlights the need for datasets which require more complex reasoning from models, as current datasets contain very simple questions, which are not of much use if used to train models for future applications of VQA. Existing datasets don't test models for robustness in the presence of noise.
 
 Most Interesting thought:
 It would be interesting to study how the integration of a knowledge graph could help create the structure of each module, and possibly teach the model how to focus attention over the question to use it in the creation of the NMN architecture. The modules' structure currently seems to be handcoded. It would also be interesting to use NMNs to help in discriminative image captioning through a discriminate module (find + subtract/AND) while giving context agnostic data.
