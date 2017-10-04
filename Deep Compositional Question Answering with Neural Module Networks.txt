@@ -10,10 +10,12 @@ Strengths:
 
 - The general architecture for Neural Module Networks is versatile in the sense that it can be used in multiple other applications such as text question answering, visual referring expression resolution, querying structured knowledge bases or even general signal processing.
 
-- 
+- A "Visual SQL" of sorts is developed where an outside user can pass modular queries to the model once completely trained.
+
+- The model combines the output of the NMN with predictions from a simple LSTM question encoder to prevent a change in grammatical semantics during modularization to affect the answer, and to help capture semantic regularities.
 
 Weaknesses:
-- The modules seem hand-coded and limited. It is also not apparent what intuition is being used in devising a module's structure.
+- The modules seem hand-coded and limited. It is also not apparent what intuition is being used in devising a module's structure. The potential position of a module seems to be fixed beforehand, hence preventing any flexibility in analysis of the question structure.
 
 Reflections:
 - The paper has found a newer technique to use attention (through compositional attention blocks), which is more hand coded insted of leaving it to a monolithic network.
