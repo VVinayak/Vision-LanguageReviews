@@ -13,7 +13,7 @@ Strengths:
 - 
 
 Weaknesses:
-
+- The modules seem hand-coded and limited. It is also not apparent what intuition is being used in devising a module's structure.
 
 Reflections:
 - The paper has found a newer technique to use attention (through compositional attention blocks), which is more hand coded insted of leaving it to a monolithic network.
