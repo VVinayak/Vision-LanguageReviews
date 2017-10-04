@@ -1,0 +1,17 @@
+Summary:
+The paper introduces the concept of neural module networks, which compose collections of jointly-trained neural “modules” into deep networks for question answering. Their approach decomposes natural language questions (which are generally compositional in nature) into linguistic sub-structures that help in the dynamic instantiation of modular networks consisting of reusable components. The final compound networks are jointly trained. The model achieves state-of-art performance on the VQA dataset, and the SHAPES dataset (which was a synthetic dataset of abstract shapes created by the authors to test compositional understanding of VQA models).
+
+Strengths:
+- It is quite intuitive that current VQA models are monolithic networks being expected to understand the compositional nature of natural language questions without being trained to understand them. The idea of training the model through separate reusable modules to better understand this compositionality and visual features is quite interesting.
+
+- The modular nature of sub-structures means that modules can be composed in an independent manner, in a different way for every question and possibly without any having seen such structures during training.
+
+- 
+
+Weaknesses:
+
+
+Reflections:
+
+
+Most Interesting thought:
