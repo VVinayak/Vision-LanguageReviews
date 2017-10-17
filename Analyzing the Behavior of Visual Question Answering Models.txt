@@ -1,0 +1,15 @@
+Summary:
+This paper tries to summarize the strengths, weaknesses, similarities and differences amongst existing baselines presented on the research domain of Visual Question Answering by developing techniques to characterize their behaviour. They analyze both attention and non-attention based models to identify potential directions for improvements in these models. Their analysis points to how existing models do not generalize well to novel scenarios, vomit out memorized answers without fully listening to questions and do not attempt to change their answers across input images. They finally mention that the structure of existing deep learning models and priors in existing VQA datasets force models to be more statistically oriented than concept oriented.
+
+Strengths:
+
+
+Weaknesses:
+
+
+Reflections:
+
+
+Most Interesting Thought:
+
+
