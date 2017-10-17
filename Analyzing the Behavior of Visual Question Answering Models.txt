@@ -1,15 +1,33 @@
 Summary:
-This paper tries to summarize the strengths, weaknesses, similarities and differences amongst existing baselines presented on the research domain of Visual Question Answering by developing techniques to characterize their behaviour. They analyze both attention and non-attention based models to identify potential directions for improvements in these models. Their analysis points to how existing models do not generalize well to novel scenarios, vomit out memorized answers without fully listening to questions and do not attempt to change their answers across input images. They finally mention that the structure of existing deep learning models and priors in existing VQA datasets force models to be more statistically oriented than concept oriented.
+This paper tries to summarize the strengths, weaknesses, similarities and differences amongst existing baselines presented on the research domain of Visual Question Answering, by developing techniques to characterize their behaviour. This is motivated by how most models' performance have been clustered around 60-70% without much improvement towards the human baseline of 83%. They analyze both attention and non-attention based models to identify potential directions for improvements in these models. Their analysis points to how existing models do not generalize well to novel scenarios, vomit out memorized answers without fully listening to questions and do not attempt to change their answers across input images. They finally mention that the structure of existing deep learning models and priors in existing VQA datasets force models to be more statistically oriented than concept oriented.
 
 Strengths:
+- It's quite clear that this paper is novel in attempting to do behaviour analysis of VQA models which haven't been done before. The directions for measuring the success of models are also quite unique and are superior to the surfacial indicators used by Yand et al (2016).
 
+- The analysis shows that mistakes can be successfully predicted by checking the distance to a question-image pair's k-nearest neighbours. This shows a strong correlation between accuracy and nearest neighbour distances, and a potential for creating predictive models that reject new instances as being too different from what they have learnt.
+
+- This paper initiates work into ensuring models don't get biased by priors and can learn compositional concepts.
+
+- It's quite interesting how models converge to an answer without listening to the entire question. The test to drop particular Parts of Speech in the questions was a very important test that showed how priors in VQA datasets are hampering the model's learning abilities.
+
+-The question of whether attention actually helps is well raised when they find attention based models to jump to conclusions much faster than non-attentive frameworks. That such models are captivated by adjectives especially for yes/no questions is a surprising find.
+
+-The analyses, as highlighted by the several graphs and the appendix, is quite exhaustive and complete.
 
 Weaknesses:
+- Some pictures are too small, while a few graphs have too much data. Also considering that most questions are just 7-15 words long, what does it really mean to pass 44-49% of a question to a VQA model? It doesn't seem very intuitive to gauge by percentages.
 
+- It would have been nice if the dataset size for complete image understanding had been larger. 
+
+-It would have been good to see the attention maps for questions that are incomplete. It would help better understand the analysis made by the authors.
 
 Reflections:
+- Many of the problems with existing VQA models can be attributed to the model architecture or datasets. Architectures tend to mimic human thinking of how to solve such AI problems, which does handicap the model with the same problems that humans undergo with these tasks. If we must train models, it should be without the same handicaps that humans face. An in dept study of knowledge based AI is required to make AI overcome the psychological drawbacks that humans face in doing routine activities.
+
+- VQA models are more language oriented than image oriented probably because we always try to bridge the semantic gap between images and language by bringing down images to the language platform. Also, the idea of being too statistically dependent to determine answers in VQA means the loss of concepts and ideas. Work in generative models (over discriminative models) might help advance VQA by pushing language into the image domain and concentrating on concepts in images than color statistics in pixels.
+
 
 
 Most Interesting Thought:
-
+The most important direction out of this paper is to produce datasets that are not riddled with the above problems. The task of generating intelligent questions should not be left just to humans (the label biases as mentioned in the paper are due to humans asking questions based on the image, rather than asking intelligent questions that humans can not directly answer without applying logic). Work on question generation needs to be the next objective for the VQA community.
 
