@@ -10,6 +10,14 @@ Strengths:
 
 - Much care has been taken to ensure that the data collection process was of uniform quality - including efforts to check whether some questions might not elicit different images due to rare concepts, efforts to make the question relevant to the image, etc.
 
+- A very interesting point to observe is how the accuracies of the models fall when trained on unbalanced data and tested on balanced data, and then increase close to their original accuracies when also trained on the balanced data. It does show that feeding the right data during training can help models improve their abilities in the direction desired. By bringing the accuracies back to their original values using the new dataset, the paper clearly shows that data can not be blamed a lot for lower accuracies, and that models should improve/perform consistently irrespective of how the data is set up. 
+
+- It is also conclusive that the balanced dataset is doing a better job based on the results from the language only model. The fact that the HieCoAtt model achieved higher accuracy on correct predictions for image pairs is also encouraging.
+
+- Looking at the breakdown of the accuracies for different answer types, it is quite surprising to see that the overall decrease in accuracies is majorly because of yes/no type questions, implying the underlying exploitation of the language biases for yes/no questions to jack up accuracies. The Balanced dataset itself contributed an improvement in accuracy for number and other answer types, which is encouraging.
+
+- As noted in the paper, the improvement in yes/no and number answers when the training changes from unbalanced to the balanced dataset is large, while existing models don't vary much on these types of questions. The balanced dataset can hence act as a good test between models that actually make the right adjustments to capture the right biases, as compared to those that are simply high-capacity behemoths trying to tune to the language biases in the unbalanced VQA datasets. 
+
 Weaknesses:
 - It would have been nice if there were more than 1 complementary/different image present for each question, especially for yes/no and number questions, as the answer options are still limited and not open ended enough in these situations to actually force the model to pick up image details over priors.
 
