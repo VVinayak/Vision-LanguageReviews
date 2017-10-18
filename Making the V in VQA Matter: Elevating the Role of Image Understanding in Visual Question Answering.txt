@@ -1,13 +1,27 @@
 Summary:
-In response to the inherent biases in existing VQA datasets which cause models to shortcut through the learning process by memorizing language priors instead of visual modalities, the paper details the efforts to balance the most popular VQA dataset. The effort involved collecting pairs of images that would elicit complementary/different answers to the same question. The fact that baselines on previous models fell drastically in their accuracies strongly suggests that the previous models did get biased by language priors as qualitatively stated in Agarwal et al (2016). The paper concludes by proposing a model that not only performs VQA, but also shows images that would have elicited different responses to the same question, so as to help users know that the model has understood the concept being questioned and not language priors. 
+In response to the inherent biases in existing VQA datasets which cause models to shortcut through the learning process by memorizing language priors instead of visual modalities, the paper details the efforts to balance the most popular VQA dataset. The effort involved collecting pairs of images that would elicit complementary/different answers to the same question. The fact that baselines on previous models fell in their accuracies strongly suggests that the previous models did get biased by language priors as qualitatively stated in Agarwal et al (2016). The paper concludes by proposing a model that not only performs VQA, but also shows images that would have elicited different responses to the same question, so as to help users know that the model has understood the concept being questioned and not language priors. 
 
 Strengths:
+- A big contribution of the paper is an improved dataset for VQA without language priors. Future models can't superficially guess answers to questions just because the answers to such questions are quite common.
 
+- The fact that models turned out to be inflexible to the improved dataset clearly suggests the superiority of the dataset compared to its previous versions in making the visual aspect of VQA equally important.
+
+- It is quite intuitive that the authors chose to balance the datasets based on questions to alleviate the problem of language priors, and not just redistributing questions to keep answer distributions uniform.
+
+- Much care has been taken to ensure that the data collection process was of uniform quality - including efforts to check whether some questions might not elicit different images due to rare concepts, efforts to make the question relevant to the image, etc.
 
 Weaknesses:
+- It would have been nice if there were more than 1 complementary/different image present for each question, especially for yes/no and number questions, as the answer options are still limited and not open ended enough in these situations to actually force the model to pick up image details over priors.
 
+- In the counter-example image generation model, it would have been more intuitive to see some explanation for why the other images would produce different answers to see if the model actually understood the difference. Previous works in visual explanations through attention maps/black box explanations over the image can be leveraged for the same, possibly with the help of a knowledge base.
 
 Reflections:
+- Zhang et al (2016) point to the visual priming bias in data collection processes for VQA. Should we be focusing on creating better questions and leverage ideas from text Question generation for this purpose?
 
+- It would be interesting to see whether models start learning image priors with time - where models answer more about the image than answer the question (success for captioning, but not so good for VQA) because of certain features present in all images (open sky, grass etc.). 
+
+- It would be nice if VQA gets extended to include an image, and a set of questions on that image with the same priors (What is on the table? and What is under the table? etc.) as that will be a superior challenge for VQA models - to not get biased by the question priors and answer the questions correctly.
+
+- The question collection mechanism wanted to eliminate questions which didn't make sense with respect to the dataset. A good way ahead would have been to allow such questions and get the models to answer that the question was not relevant to the image.
 
 Most Interesting Thought:
