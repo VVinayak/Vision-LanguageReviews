@@ -1,0 +1,13 @@
+Summary:
+In response to the inherent biases in existing VQA datasets which cause models to shortcut through the learning process by memorizing language priors instead of visual modalities, the paper details the efforts to balance the most popular VQA dataset. The effort involved collecting pairs of images that would elicit complementary/different answers to the same question. The fact that baselines on previous models fell drastically in their accuracies strongly suggests that the previous models did get biased by language priors as qualitatively stated in Agarwal et al (2016). The paper concludes by proposing a model that not only performs VQA, but also shows images that would have elicited different responses to the same question, so as to help users know that the model has understood the concept being questioned and not language priors. 
+
+Strengths:
+
+
+Weaknesses:
+
+
+Reflections:
+
+
+Most Interesting Thought:
