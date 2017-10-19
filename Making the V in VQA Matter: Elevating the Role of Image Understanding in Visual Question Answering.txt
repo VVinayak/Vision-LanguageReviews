@@ -23,6 +23,8 @@ Weaknesses:
 
 - In the counter-example image generation model, it would have been more intuitive to see some explanation for why the other images would produce different answers to see if the model actually understood the difference. Previous works in visual explanations through attention maps/black box explanations over the image can be leveraged for the same, possibly with the help of a knowledge base.
 
+- That the distance model matched the results of the explanation model does imply that drastic improvements in model architectures are necessary to achieve good explanations.
+
 Reflections:
 - Zhang et al (2016) point to the visual priming bias in data collection processes for VQA. Should we be focusing on creating better questions and leverage ideas from text Question generation for this purpose?
 
@@ -32,4 +34,7 @@ Reflections:
 
 - The question collection mechanism wanted to eliminate questions which didn't make sense with respect to the dataset. A good way ahead would have been to allow such questions and get the models to answer that the question was not relevant to the image.
 
+- The explanation model raises a question over end to end training in its case, where it would violate the method the dataset had been collected. The argument does seem sound, and a good method for the model to tackle this scenario is to give an explanation only when the predicted answer well matches the human ground truth answer. It would be interesting to see how many times the explanation came. 
+
 Most Interesting Thought:
+To improve the state-of-art in VQA, models will need to truly understand images and abstract concepts in them. Doing this requires more than just better CNN and LSTM combinations. Work on relational networks (https://arxiv.org/pdf/1706.01427.pdf) and neural module networks (https://arxiv.org/abs/1601.01705) is quite encouraging and future works must consider how different extra units can help in reasoning instead of burdening the CNN and LSTM with the joint tasks of understanding features and drawing conclusions from them. And to improve the level of reasoning, a knowledge base is going to be necessary for future models with real world applications.
