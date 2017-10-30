@@ -2,18 +2,24 @@ Summary:
 This paper proposes to check the relevance of questions asked about images in the context of Visual Question Answering. They first decide whether (1) a question is visual or not, (and if yes) then determine whether (2) the question is pertinent to the image under concern. Their approaches are based on VQA model uncertainty, LSTM-RNNs and measuring caption-question similarity. They conclude through human studies that a VQA model with question relevance reasoning abilities is perceived to be much smarter and human-like than normal VQA systems. They also outperform previous baselines on the tasks of (1) and (2).
 
 Strengths:
+- It is appreciated that they consider the per-class normalized accuracy and acknowledge the imbalance in the created datasets.
 
+- Using the POS tags to train the LSTM seems quite intuitive to discriminate visual and non-visual questions. The approach to measure caption-question similarity is meaningful to measure visual grounding of questions, and is partially how the SPICE metric used in image captioning tasks is calculated.
+
+- It is encouraging to note the overwhelming vote for the question reasoning model, inspite of having added just simple MLPs in front of similar VQA models.
 
 Weaknesses:
 - It remains unclear on how novel the methodology is, given that existing work has already done this with captions and queries for an image. It seems like an application of those ideas to the question domain instead of other text formats.
 
-- A footnote mentions that the high accuracies on the above tasks indicated that the size of the data collected is sufficient to learn corresponding lnguistic structures.
+- When assuming that VQA models will answer questions with lesser certainty because of not having seen such training samples, it also needs to be remembered that current VQA models tend to memorize answers and fail on novel instances which might very well be relevant to the image.
 
-- 
+- It would have been nice to see a larger set of questions being tested for human evaluations as meaningful or not. Its also not clear whether images were shown simultaneously with questions for the experiment. 
 
 Reflections:
 - Would it be more beneficial to train the LSTM network on scene graphs created from groundtruth captions/questions (as in SPICE) instead of just POS tags?
 
-- It would have been interesting to see how relevant questions were from VQA2.0 assuming Visual Genome (or any other VQA dataset) questions to be perfectly relevant and vice versa 
+- It would have been interesting to see how relevant questions were from VQA2.0 assuming Visual Genome (or any other VQA dataset) questions to be perfectly relevant and vice versa. Then it would be interesting to see how many questions passed the test of being visual questiond but ended up having false premises.
+
+- Generative models have a long way to go before catching up with discriminative models.
 
 Most Interesting thought:
