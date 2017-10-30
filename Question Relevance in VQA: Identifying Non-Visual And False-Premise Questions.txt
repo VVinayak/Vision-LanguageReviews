@@ -22,7 +22,7 @@ Reflections:
 
 - Generative models have a long way to go before catching up with discriminative models.
 
-- The number of AMT workers involved in the experiment is very less and questionable. The idea that they may choose the paper's model over others even when it is wrong seems to show some unwanted statistical biases due to lack of data. 
+- The number of AMT workers involved in the experiment is very less and questionable. The idea that they may choose the paper's model over others even when it is wrong seems to show some unwanted statistical biases due to lack of data, possibly through the way the experiment was conducted. 
 
 Most Interesting thought:
 It seemed as though the question-caption and question-generated question similarity scores seemed to better understand the semantics of an image. But when we, as part of our project, tried to measure the number of meaningful words present in a caption as compared to a question, we found it to be surprisingly low, i.e. there isn't much difference between captions and questions for images in VQA datasets. Its possible that the model gamed the system to produce such high accuracies using the similarity metrics.Even the SPICE metric seeks to learn a scene graph representation from the ground truth and generated captions and match their similarity. Though it might be a measure of visual grounding because workers gave the ground truth, we might need to start actually looking at image annotations and making decisions on the relevance of questions/making more complete captions. Datasets like Visual Genome and models like Fast R-CNN which do object detection before deciding on features to be extracted are grounds for future work for better VQA models. 
