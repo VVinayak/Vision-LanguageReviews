@@ -1,0 +1,25 @@
+Summary:
+The paper introduces the task of free-form and open-ended Visual Dialog, where an AI agent is required to hold meaningful conversations and answer questions about visual content with humans by tapping into the dialog history, the image and a question about the image. A 2 person chat based dataset is collected (VisDial) with a total of 1.2 million dialog question-answer pairs  for 120,000 images from MS COCO. A baseline family of encoder-decoder models for solving visual dialog is provided (having 3 encoders - Late Fusion, Hierarchical Recurrent Encoder and Memory Network; and 2 decoders - generative and discriminative) that outperforms other sophisticated baselines. An evaluation protocol for visual dialog based on retrieval is also established, where an AI agent sorts through candidate answers and evaluates metrics such as mean-reciprocal-rank of human response. Human studies help measure how far the baselines are from human performance on the visual dialog task. A visual chatbot is also released. They finally assert that Visual Dialog is a good test for machine intelligence and allows sufficient evaluation of progress. 
+
+Strengths:
+- Visual Dialog is a good test on an AI's ability to not just see, but to also understand and communicate (region detection, co-reference resolution, visual memory, consistent answers). It is appreciated that this topic has been introduced to the community, and that much effort has been taken to build a cohesive dataset, which contains longer answers and is an order of magnitude larger. There is a sense of purpose for each actor (questioner doesn't see the image and tries to develop a mental model by asking questions; answerer sees the image and answers by contextualizing the current question in terms of the previous dialog).
+
+- The task is a mix of goal-driven dialog (where time to task completion is important) and goal-free dialog (where AI agents must be more coherent and engaging) and is a better frontier for AI. There is also no visual priming bias as in VQA because the questioner doesn't see the image.
+
+- Much care was taken to ensure that multi-user HITs were not interrupted and error handling protocols were covered well.
+
+- With longer and more unique answers, models can not piggyback on language priors as commonly observed in VQA. The answers and questions are not always contextually relevant due to the task, making for a richer and more human-like collection of data to help AI know when questions are contextually relevant to the image and answer/not answer on this basis. There is also continuity in questions and a need to understand coreference issues in questions for models to properly answer questions.
+
+- The evaluation metric is intuitive - the best way to know how good the model is to understand its answer at every stage of the dialog by retrieval against human responses.
+
+Weaknesses:
+- 
+
+Reflections:
+- The dataset collected where the blurred pictures were shown to the questioner could be a good way to test image segmentation/detection algorithms or solve image inpainting tasks.
+
+- Without the image, the VisDial questions were more open-ended but follow a pattern. This might mimic the actual knowledge discovery process of humans in unknown learning environments. It might be a better indicator of natural language, and help in knowledge base retrieval tasks which are visual in nature.  
+
+- The HRE encoder looks like a dialog version of Lu et al's (2016) visual sentinel model. Maybe getting inspiration from more advanced captioning and VQA models will definitely help improve the start of the art. 
+
+Most Interesting Thought:
