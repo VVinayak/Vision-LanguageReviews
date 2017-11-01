@@ -8,18 +8,23 @@ Strengths:
 
 - Much care was taken to ensure that multi-user HITs were not interrupted and error handling protocols were covered well.
 
+- Extensive statistics on the data are represented.
+
 - With longer and more unique answers, models can not piggyback on language priors as commonly observed in VQA. The answers and questions are not always contextually relevant due to the task, making for a richer and more human-like collection of data to help AI know when questions are contextually relevant to the image and answer/not answer on this basis. There is also continuity in questions and a need to understand coreference issues in questions for models to properly answer questions.
 
 - The evaluation metric is intuitive - the best way to know how good the model is to understand its answer at every stage of the dialog by retrieval against human responses.
 
+- Results are intuitive - image understanding is important for models and learning the history in improved models is better than naively just adding it to model inputs.
+
 Weaknesses:
-- 
+- The first 2 pages spend a great deal of space introducing the topic in general. This is good for a complete novice in vision-language tasks. But it has resulted in all important information including model design and results being pushed into the supplement which most reviewers are hesitant to read. Some sections were copied again into the Appendix (A).
 
 Reflections:
 - The dataset collected where the blurred pictures were shown to the questioner could be a good way to test image segmentation/detection algorithms or solve image inpainting tasks.
 
 - Without the image, the VisDial questions were more open-ended but follow a pattern. This might mimic the actual knowledge discovery process of humans in unknown learning environments. It might be a better indicator of natural language, and help in knowledge base retrieval tasks which are visual in nature.  
 
-- The HRE encoder looks like a dialog version of Lu et al's (2016) visual sentinel model. Maybe getting inspiration from more advanced captioning and VQA models will definitely help improve the start of the art. 
+- It is surprising to see the HRE models getting beaten by the MN models even though just marginally. Is the method of encoding history crucial to help decide how well models perform?
 
 Most Interesting Thought:
+The HRE encoder looks like a dialog version of Lu et al's (2016) visual sentinel model. Maybe getting inspiration from more advanced captioning and VQA models will definitely help improve the start of the art. 
