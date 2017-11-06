@@ -1,0 +1,30 @@
+Summary:
+The paper introduces the task of image guessing, where 2 bots are expected to communicate through natural language dialog so as to enable the questioner-bot to determine which image the answerer bot is talking about from a set of given images. Their training is done end-to-end with reinforcement learning. In their first experiment, the bots are trained without any grounding in vocabulary or supervised dialog. This resulted in visual dialog between bots using their own communication protocol to convey attributes such as shape and colour. In the second experiment, they train the bots on supervised dialog and images based on the VisDial dataset using reinforcement learning (RL). Such RL finetuning improves the performance of bots as compared to when simply supervised. The bots also learn to cooperate, with the questioner asking questions that the answerer is good at, hence resulting in informative dialog.
+
+Strengths:
+Unlike previous supervised approaches, this work allows the bots to steer the conversation, instead of throwing away the bot's last answer to make evaluation easier.
+
+It is quite interesting to see how both bots understand that cooperation will help them both achieve the highest rewards by using reinforcement learning as opposed to supervision over human dialog (humans need to learn from them!). 
+
+It is interesting to see how giving them discrete symbols for communication and reasoning immediately results in grounding in natural language and logic.
+
+The baselines to check the impact of reinforcement learning on coordinated communication, language adaptation and improvement over supervised learning paradigms are intuitive and decent baselines to benchmark against.
+
+It is intuitive to see that reinforcement learning is better at image identification, that cooperative dialog helps improve memory retention which helps in further dialog, and that the long term goals of reinforcement learning encourage the answerer bot to not play safe but to give an answer that actually gives more information to the questioner to ask better informed questions.
+
+The methodology of evaluating the dialogs used in this paper is good - first having a model generate dialogs and then evaluating them throught human studies is better than gaming a model to match the ground truth as much as possible. Hopefully future tasks will borrow inspiration from this evaluation for their tasks.
+
+Weaknesses:
+Some symbols and dialogs within results are not very clear.
+
+There are a few examples of dialog where the questions get repeatedly asked, and sometimes where the answer changes. It might be necessary for the training to include a softmax to understand which fact from history is most relevant to the current question/answer.
+
+Reflections:
+The experiment to allow free-form communication between bots is quite interesting. Can we learn about the inefficiencies of modern languages from their conversations in more sophisticated settings?
+
+The bots defaulted to greedy policies when in the ungrounded communication setting. If the probabilities had been uniformly distributed over the action space (or through any other distribution), would we lose the logical grounding of symbols in natural language?
+
+There is a need for better evaluation metrics for dialog tasks. As noted in the paper, there is not much of an increase in VisDial metrics despite the RL models doing a much better job. The human-likeness of generated answers being judged exactly against the groundtruth needs to be rethought. Otherwise models might start cheating by overfitting to the ground truth.
+
+Most Interesting Thought:
+It would be interesting to have RL trained bots have visual dialog under generative circumstances instead of discriminative. If dialog could help one bot paint a picture that the answerer has a mental model of, it would be extremely helpful in education, healthcare and forensics. Li et al (EMNLP 2016) has made advances in the text domain using similar ideas, and a vision generation task is solvable in the near future.
