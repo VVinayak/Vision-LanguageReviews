@@ -12,12 +12,14 @@ Strengths:
 
 - The authors clearly justify how their work is not a replication of Das et al (2017) non-grounding experiment, and have the needed incrmental changes for meaningful settings.
 
+- It is interesting how the experiment of memoryless A-bot results in a form of compositional understanding in bots. It also achieves the best score in terms of generalizing over novel instances. It is intuitive that the Q bot now asks the right questions as it has understood compositionality, but that A bot can't answer everything right because of novel test cases.
+
+- The experiment on evolution of language is extremely interesting. It is a precursor to understand what type of (instance,task) types are easy/difficult to pick up in human conversation. It is also interesting to see how a better language grounding quickly improves the prediction accuracy.
+
 Weaknesses:
 - It would have been nice to not put any restrictions on the number of rounds and see how long it takes for the bot to predict something. By restricting the rounds, we might end up seeing an answer that might not be the 'converged to' answer.
 
 - An interesting setting would be if rewards were proportionate to the number of rounds it takes to reach the round. Different reward functions for each bot would also be aomething interesting to observe.
-
-- It is not clearly explained how the authors understand the meaning of the protocols being used in every round. 
 
 Reflections:
 - Does the nature of such dialogs imply that English is an inefficient language in the learning paradigm? If another language was used, would newer trends emerge?
@@ -29,3 +31,6 @@ Reflections:
 - Its interesting to see that the policy ignores signals from their partner when the vocabulary size is larger than the number of instances. The dialog is lost at this stage. This is complete cooperation. 
 
 - The intuition on removing the A-bot's memory is solid. It however seems strange that they managed to ground individual symbols into attributes and states. Usually people know a language and remember it while speaking to the same person a second time because they maintain memory over the structures of the language used in that particular conversation. It of course still fails to understand sequence in task execution. 
+
+Most Interesting Thought:
+In the above experiment, it would be interesting to see how tougher concepts than colour, shape and style (and possibly a larger number of concepts) are understood and grounded in language. It does appear that the memoryless A-bot helps improve prediction accuracy and makes it more human interpretable, but in real life applications, it is necessary for context to be memorized to understand what was being said earlier. The above tasks were compositional but seemed to lack a need for memory requirement (other papers on visual dialog did perform better when using memory on natural language dialogs). So though we can strive for compositionality optimization, there are simply many concepts that are embedded within another and may need context optimization as well besides compositional understanding. 
