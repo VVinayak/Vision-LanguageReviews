@@ -1,0 +1,31 @@
+Summary:
+The paper talks about the recent findings in multi-agent dialog that point towards the invention of grounded natural language protocols for communication amongst agents despite the lack of human supervision. They test models using a game setting called 'Task & Talk' that shows that although most agent invented languages are effective in reaching desired award states, these languages are not 'natural' - neither interpretable nor compositional. To achieve human-like naturalness in conversations, the paper discusses possible strategies to ensure restrictions on how communication develops between agents.
+
+Strengths:
+- Discovering that natural language doesn't emerge naturally in AI agent dialogs- that it is usually not interpretable by humans -  is an important find. Knowing how to coax them into achieving human-like conversations is also quite important
+
+- It is good to note that the different languages achieved near 100% rewards, hence enabling the study of the underlying language.
+
+- It is quite intuitive that communication protocols aren't generalized to novel test cases, and that mapping instances to token pairs is a bad approach for the bots.
+
+- It is meaningful to see that results in the limited vocabulary tasks match results fom 'cheap talk' games in game theory. It is interesting to see how only the first token is important in the conversation. It is interesting to see how sets of attributes are mapped to unique combinations instead of a single attribute to an instance. The bots have learned to better utilize limited resources.
+
+- The authors clearly justify how their work is not a replication of Das et al (2017) non-grounding experiment, and have the needed incrmental changes for meaningful settings.
+
+Weaknesses:
+- It would have been nice to not put any restrictions on the number of rounds and see how long it takes for the bot to predict something. By restricting the rounds, we might end up seeing an answer that might not be the 'converged to' answer.
+
+- An interesting setting would be if rewards were proportionate to the number of rounds it takes to reach the round. Different reward functions for each bot would also be aomething interesting to observe.
+
+- It is not clearly explained how the authors understand the meaning of the protocols being used in every round. 
+
+Reflections:
+- Does the nature of such dialogs imply that English is an inefficient language in the learning paradigm? If another language was used, would newer trends emerge?
+
+- The trend of using reinforcement learning for visual dialog and the model set by the paper will most likely be the best baseline for future work in this domain.
+
+- It isn't clear as to which bot is dictating the grounding - which symbol means what. It is also unclear how the other bot understands this, and conveys the choice for us to understand.
+
+- Its interesting to see that the policy ignores signals from their partner when the vocabulary size is larger than the number of instances. The dialog is lost at this stage. This is complete cooperation. 
+
+- The intuition on removing the A-bot's memory is solid. It however seems strange that they managed to ground individual symbols into attributes and states. Usually people know a language and remember it while speaking to the same person a second time because they maintain memory over the structures of the language used in that particular conversation. It of course still fails to understand sequence in task execution. 
