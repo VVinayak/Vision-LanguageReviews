@@ -1,0 +1,32 @@
+Summary:
+This paper introduces the topic of image captioning in the era before deep learning. They utilize statistical techniques to mine and parse text data, and recognition algorithms to identify objects in images, then combine them in a conditional random field (CRF) to finally produce relevant and image-grounded descriptions for images. Human evaluation points favorably to the quality of such descriptions.
+
+Strengths:
+- The paper attempts to go beyond just retreiving apropriate sentences for an image or summarizing relevant documents. They automatically generated their own natural language descriptions.
+
+- The paper goes beyond simple object labelling and speaks about their spatial relationships as well, which was not being outputed in previous works that consider such relations. 
+
+- The paper combines priors for visually descriptive language with estimates of the modifiers based on image regions around object detections. This is a possible explanation for how existing encoder-decoder frameworks manage to work.
+
+- They have correctly pointed out the shortcomings of BLEU for such tasks yet shown those values for completeness. It is also reassuring that their method gets high scores on human evaluation and also has high evaluator agreement on 160 instances. This spurned the need for better metrics such as CIDEr and SPICE.
+
+Weaknesses:
+- The sentences generated for a particular image are primarily rewriting the existing relationships present in an image because they target only modifier and prepositions in text data. There can be more summarization and conciseness in such sentences, with a focus for understanding the main objects in the image. 
+
+- The object detection is also not done for all classes of objects, scenes or contexts due to the large amount of handcoding required. There was a lot of classifiers needed to be created to detect the few object classes that the model attempts to detect.  
+
+- It isn't their fault due to the lack of deep learning capabilities at that time, but the paper employs many hand-coded modules to achieve image captioning. The fact that they use large text collections instead of labelled image data means that their model can't accurately model everything in an image 
+
+- They perform smoothing of potentials based on descriptions parsed from Flickr and Google. Ideally, such potentials should be dataset independent (of course, current neural models aren't dataset resistant either!).
+
+- The language generation process is highly rigid in that all content words are to be used and they all are simply glued together by connectors learnt by language models. It naturally fails to create a single cohesive sentence, and modelling more connectors requires dynamic programming. 
+
+Reflections:
+- The paper is a clear reflection of how important deep learning is. In the old times, one had to hand-code several aspects of computer vision and natural language processing algorithms. This paper attempts to understand the underlying structure of natural language descriptions of images, and select and train the necessary vision algorithms to fill in the blanks. This is followed by corrective smoothing using language statistics and ends with a natural language generation process. Deep learning has helped everything become end-to-end.
+
+- The idea of having a coefficient of trade-off between image and text based potentials is kind of linked to our current problem of deep learning problems not being grounded in the image and simply picking up language biases in text to produce answers.
+
+- They used large text annotations to figure out how to describe images but evaluated it on the UIUC PASCAL dataset that has ground truth annotations of captions for images. If they had launched an effort for getting a larger version of PASCAL for training, they might have simplified their model. Anyways, this was a trailblazer paper and paved the way for better models and datasets to achieve superior performance on image captioning and other vision-language tasks.
+
+Most Interesting Point:
+This paper raises the bar on the important task of image captioning for the vision and language community to work on. An important point to note is that many problems they face are still not fully closed even in the realm of neural image captioning models. It is clear that simply understanding spatial relations between pairs of detected objects is not enough to fully describe an image and it is not necessary to mention all detected relationships. Having contextual grounding to understand which parts of an image are the most prominent and saying more than just talking about their spatial orientations is key for future image captioning models to succeed. A sort of attention over object detections is necessary as done in Anderson et al (CVPR 2017)(not just attention independently or object detections independently). The ideas of mining external text collections to get templates for captions and using external sources for training detection classifiers was quite important in the success of this paper (it helped them get hold of the most important objects in the image and describe them), and future captioning works should use not just image data labelled with captions but also external knowledge to help generate better captions in context. 
